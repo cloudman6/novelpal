@@ -1,0 +1,20 @@
+storage:
+  mongo:
+    uri: "mongodb://localhost:27017"
+    db_name: "novel_editor"
+  vector_db:
+    qdrant:
+      host: "localhost"
+      port: 6333
+
+llm:
+  openai:
+    api_key: "${OPENAI_KEY}"
+    model: "gpt-4-turbo"
+  local:
+    model_path: "/models/qwen-14b-chat"
+
+cache:
+  redis:
+    enabled: true
+    ttl: 3600
