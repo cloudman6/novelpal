@@ -1,16 +1,39 @@
+max_workers: 8
+
 storage:
-  mongo:
+  mongodb:
     uri: "mongodb://localhost:27017"
-    db_name: "novel_editor"
+    db_name: "novelpal"
+    entity_collection_name: "entities"
+  neo4j:
+    uri: "bolt://localhost:7687"
+    user: "neo4j"
+    password: "12345678"
   vector_db:
     qdrant:
       host: "localhost"
       port: 6333
 
 llm:
-  openai:
-    api_key: "${OPENAI_KEY}"
-    model: "gpt-4-turbo"
+  model_used: 
+    common: "deepseek"
+    reasoner: "deepseek-r"
+  qwen:
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key: "sk-d760c44a444b4e5db21e55f093893e1a"
+    model: "qwen-plus" # 模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
+  zhipu:
+    base_url: "https://open.bigmodel.cn/api/paas/v4/"
+    api_key: "9095d636261f47808fb896896e1c49b9.4U2Rj5ejnV3CjPSr"
+    model: "glm-4-plus" # glm-4-plus glm-4-air
+  deepseek:
+    base_url: "https://api.deepseek.com"
+    api_key: "sk-8f3553e01e6e49eaaa50c2a8f15671ec"
+    model: "deepseek-chat" # deepseek-chat deepseek-reasoner
+  deepseek-r:
+    base_url: "https://api.deepseek.com"
+    api_key: "sk-8f3553e01e6e49eaaa50c2a8f15671ec"
+    model: "deepseek-reasoner" # deepseek-chat deepseek-reasoner
   local:
     model_path: "/models/qwen-14b-chat"
 
@@ -18,3 +41,7 @@ cache:
   redis:
     enabled: true
     ttl: 3600
+
+logging:
+  level: "INFO"
+  file: "logs/novelpal.log"
