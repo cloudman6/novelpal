@@ -19,7 +19,6 @@ async def main():
     
     entities, relations = pipeline.process(content)
     entity_ids = [IDGenerator.get_id(entity.name) for entity in entities]
-    entity_ids.append(IDGenerator.get_id("李长湖"))
     entity_ids = list(set(entity_ids))
     entities = entity_storage.fetch_entities(entity_ids)
     relations = relation_storage.fetch_relations(entity_ids)
